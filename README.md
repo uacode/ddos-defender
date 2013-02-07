@@ -1,6 +1,16 @@
 ddos-defender
 =============
 
-Something for the protection and monitoring of ddos attacks on web
+I'll try to make tools for the protection and monitoring of DDoS attacks on websites
 
-demo
+
+Very crude version
+
+TODO:
+Make multi lang GUI
+
+
+
+System Requirements
+===================
+PHP 5.4 cli
