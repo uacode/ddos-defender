@@ -21,9 +21,11 @@ class core {
 
     private function Router() {
         if (url == '/') {
-            $mod  = 'auth';
-            $LANG = $this->LoadLang($mod);
-            require APP . '/tpl/' . $mod . '.php';
+            $mod  = 'main';
+            $LANG = $this::LoadLang($mod, $this->lang);
+
+            $conf = array('LANG' => $LANG, 'lang' => $this->lang);
+            $this->_LoadModule($mod, $conf);
         } elseif (strstr(url, '.'))
             exit('No direct acces!');
         else {
@@ -31,13 +33,13 @@ class core {
         }
     }
 
-    private function LoadLang($file) {
+    static public function LoadLang($file, $lang) {
         $file .= '.php';
-        if (!is_dir(APP . '/system/language/' . $this->lang . '/'))
-            $this->lang = 'en'; // default language
+        if (!is_dir(APP . '/system/language/' . $lang . '/'))
+            $lang = 'en'; // default language
 
-        $lang_folder = APP . '/system/language/' . $this->lang . '/';
-        require $lang_folder.'main.php'; // Global file
+        $lang_folder = APP . '/system/language/' . $lang . '/';
+        require $lang_folder . 'main.php'; // Global file
 
         if (is_file($lang_folder . $file)) {
             require $lang_folder . $file;
@@ -46,6 +48,11 @@ class core {
             return '404 language for file ' . $file . ' not found!';
     }
 
-}
+    private function _LoadModule($modul, $conf) {
+//        ini_set('display_errors', 1);
+        require APP . '/modules/' . $modul . '/main.php';
+        $mod = ucfirst($modul);
+        new $mod($conf);
+    }
 
-?>
+}

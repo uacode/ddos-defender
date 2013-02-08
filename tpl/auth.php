@@ -1,7 +1,4 @@
-<?php
-if (!APP)
-    exit('No direct access!');
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -58,15 +55,16 @@ if (!APP)
     <body>
 
         <div class="container">
-
             <form class="form-signin" method="post">
-                <h2 class="form-signin-heading"><?= $LANG['AUTH'] ?></h2>
-                <input type="text" name="login" class="input-block-level" placeholder="<?= $LANG['LOGIN'] ?>">
-                <input type="password" name="password" class="input-block-level" placeholder="<?= $LANG['PASSWORD'] ?>">
-                <label class="checkbox">
-                    <input type="checkbox" name="remember-me" value="1"> <?= $LANG['REMEMBER'] ?>
-                </label>
-                <button class="btn btn-large btn-primary" name="auth" type="submit"><?= $LANG['SINGIN'] ?></button>
+                <?php
+                if (isset($this->e_mess))
+                    echo '<div class="alert alert-error">' . $this->e_mess . '</div>';
+                ?>
+
+                <h2 class="form-signin-heading"><?= $this->LANG['AUTH'] ?></h2>
+                <input type="text" name="login" class="input-block-level" placeholder="<?= $this->LANG['LOGIN'] ?>">
+                <input type="password" name="password" class="input-block-level" placeholder="<?= $this->LANG['PASSWORD'] ?>">
+                <button class="btn btn-large btn-primary" name="auth" type="submit"><?= $this->LANG['SINGIN'] ?></button>
             </form>
 
         </div> <!-- /container -->
