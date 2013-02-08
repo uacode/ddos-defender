@@ -24,8 +24,10 @@ Download Zip archive and unzip
 See config/config.php
 
 Run in terminal:
+<pre>
 cd '/home/dobs/NetBeansProjects/ddos-defender'
 php -S 0.0.0.0:8000 --php-ini ./config/php.ini
+</pre>
 
 Go to browser on http://yourip:8000/
 Login/pass: admin

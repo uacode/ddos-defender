@@ -30,6 +30,7 @@ class Auth {
                 $this->e_mess = $this->LANG['LoginIncorrect'];
             else {
                 $_SESSION['login'] = $_POST['login'];
+                header('Location: '.url);
             }
         }
     }
