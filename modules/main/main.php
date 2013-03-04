@@ -56,10 +56,26 @@ class Main {
             preg_match('/Buffers:\s+(.*)\s*kB/i', $ram, $mem);
             $total_buffers_ram = $mem[1] * 1024;
 
+            // active connections
+            exec('netstat -n -A  inet 2>&1', $netstat);
+            $ac = count($netstat)-3;
+
             // DF
             exec('df -h 2>&1', $fs);
 
+            // OS
+            exec('cat /etc/issue 2>&1', $os);
+
+            // Kernel
+            exec('uname -a 2>&1', $kernel);
+
+            require APP . '/tpl/content.php';
+
+            /*
             echo '<h1>sys info</h1>
+                <h4>System:</h4>
+                OS: ' . $os[0] . '<br />
+                Kernel: ' . $kernel[0] . '
                 <h4>CPU:</h4>
                 ' . $processor . '<br />
                 <b>cores:</b> ' . count($core [0]) . '<br />
@@ -81,7 +97,7 @@ class Main {
                 <h4>Filesystem:</h4>
                 ' . implode('<br />', $fs) . '
 
-                ';
+                ';*/
         }
     }
 

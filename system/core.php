@@ -13,7 +13,7 @@ class core {
     function __construct() {
         $this->lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 
-        if ($_COOKIE['lang'])
+        if (isset($_COOKIE['lang']))
             $this->lang = substr($_COOKIE['lang'], 0, 2);
 
         $this->Router();
